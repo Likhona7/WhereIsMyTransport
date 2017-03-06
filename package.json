@@ -6,12 +6,25 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.16.0",
+    "body-parser": "^1.16.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
     "express": "~4.14.1",
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta10",
     "serve-favicon": "~2.3.2"
-  }
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Likhona7/WhereIsMyTransport.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Likhona7/WhereIsMyTransport/issues"
+  },
+  "homepage": "https://github.com/Likhona7/WhereIsMyTransport#readme"
 }
