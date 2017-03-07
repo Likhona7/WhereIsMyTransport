@@ -248,7 +248,9 @@ app.use(express.static(path.join(__dirname, 'public')));
  app.get('/', function(req, res){
    res.send("Hi I am a chatbot")
  });
- app.use('/users', users);
+ //app.use('/users', users);
+
+ console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
 
      app.get('/webhook', function(req, res) {
          if (req.query['hub.mode'] === 'subscribe' &&
