@@ -1,8 +1,6 @@
 'use strict';
-
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-
 var cookieParser = require('cookie-parser');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -10,11 +8,10 @@ var request = require('request');
 var path = require('path');
 var messengerButton = "<html><head><title>Facebook Messenger Bot</title></head><body><h1>Facebook Messenger Bot</h1>This is a bot based on Messenger Platform QuickStart. For more details, see their <a href=\"https://developers.facebook.com/docs/messenger-platform/guides/quick-start\">docs</a>.<footer id=\"gWidget\"></footer><script src=\"https://widget.gomix.me/widget.min.js\"></script></body></html>";
 ////////////////////////////////////////////////
-var index = require('./routes/index');
+var app = require('./routes/app');
 var users = require('./routes/users');
 
 var app = express();
-////////////////////////////////////////////////////////////////////////////////
 // The rest of the code implements the routes for our Express server.
 //let app = express();
 
@@ -40,13 +37,15 @@ app.get('/', function(req, res) {
     res.writeHead(200, {
         'Content-Type': 'text/html'
     });
+
+    
     res.write(messengerButton);
     res.end();
 });
 
 // Message processing
 app.post('/webhook', function(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     var data = req.body;
 
     // Make sure this is a page subscription
@@ -56,6 +55,7 @@ app.post('/webhook', function(req, res) {
         data.entry.forEach(function(entry) {
             var pageID = entry.id;
             var timeOfEvent = entry.time;
+            console.log("bleh" + timeOfEvent);
 
             // Iterate over each messaging event
             entry.messaging.forEach(function(event) {
@@ -126,7 +126,6 @@ function receivedPostback(event) {
     // let them know it was successful
     sendTextMessage(senderID, "Postback called");
 }
-
 //////////////////////////
 // Sending helpers
 //////////////////////////
@@ -238,9 +237,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', index);
-app.use('/users', users);
+//
+// app.use('/', app);
+ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
